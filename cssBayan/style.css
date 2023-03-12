@@ -1,6 +1,6 @@
 body {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(40deg, #FF0080, #FF8C00 70%);
   background-repeat: no-repeat;
   color: #fff;
@@ -14,12 +14,15 @@ body {
 
 .container {
   margin: 0 3rem;
+
 }
 
 input {
+  width: 0;
+  height: 0;
+  -webkit-appearance: none;
+  appearance: none;
   position: absolute;
-  opacity: 0;
-  z-index: -1;
 }
 
 .meme {
@@ -33,13 +36,20 @@ input {
   justify-content: space-between;
   border-bottom: 1px solid #fff;
   cursor: pointer;
+  transition: background 0.5s ease;
+}
+
+.meme_label:hover .plus {
+  background-color: rgb(0, 0, 0, 0.5);
+  ;
 }
 
 .meme_label::after {
   color: #fff;
-  content: '\002B';
+
   padding: 0.51rem;
   transform: scale(1.8);
+
   text-align: center;
 }
 
@@ -47,14 +57,9 @@ input {
   display: none;
 }
 
-
-input:checked+.meme_label {
-  transition: all 0.5s;
-}
-
 input:checked+.meme_label::after {
   color: #fff;
-  content: '\2013';
+
   transform: scale(1.5);
 }
 
@@ -64,4 +69,20 @@ input:checked~.meme_content {
   padding: 1em 0;
   font-weight: bold;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+
+  body,
+  .meme_label {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+
+  body,
+  .meme_label {
+    font-size: 10px;
+  }
 }
